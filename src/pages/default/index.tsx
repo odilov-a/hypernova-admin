@@ -41,7 +41,7 @@ const DefaultPage = () => {
           </div>
         </div>
         <div className="right-part bg-[#E6ECFE] dark:bg-[#000d2f] p-[22px] w-[600px] rounded-[12px] text-[18px]">
-          <p className="mb-[10px] dark:text-[#9EA3B5]">{t("Bahra Chicken panel and management rules")}</p>
+          <p className="mb-[10px] dark:text-[#9EA3B5]">{t("Hypernova panel and management rules")}</p>
           <a className="text-[#3367F6]" href="https://www.hypernova.uz/">{t("Created by Hypernova.uz")}</a>
         </div>
       </div>

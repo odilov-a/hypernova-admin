@@ -106,7 +106,7 @@ const Navigation: React.FC = () => {
       style={{ transition: "none" }}
     >
       <div className="flex justify-center text-center text-[20px] font-[500] mt-[30px] mb-[25px] cursor-pointer dark:text-[#9EA3B5]">
-        <Link to="/">{t("Bahra Chicken")}</Link>
+        <Link to="/">{t("Hypernova")}</Link>
       </div>
       {items.map((menuItem, i) => (
         <React.Fragment key={menuItem.key + i}>
