@@ -4,16 +4,18 @@ import { Container } from "modules";
 import { useHooks, usePost } from "hooks";
 import { Button } from "components";
 import Create from "./create";
+import More from "./more";
 import { Delete, Edit, CreateDoc } from "assets/images/icons";
 
-const Client = () => {
+const Team = () => {
   const { get, queryClient, t } = useHooks();
   const [createModal, showCreateModal] = useState({ open: false, data: {} });
   const [page, setPage] = useState(1);
+  const [moreModal, showMoreModal] = useState({ open: false, data: {} });
   const { mutate } = usePost();
   const onDeleteHandler = (id: string) => {
     Modal.confirm({
-      title: t("Вы действительно хотите удалить client?"),
+      title: t("Вы действительно хотите удалить team?"),
       okText: t("да"),
       okType: "danger",
       cancelText: t("нет"),
@@ -24,11 +26,11 @@ const Client = () => {
   const deleteAction = (id: string) => {
     if (id) {
       mutate(
-        { method: "delete", url: `/clients/${id}`, data: null },
+        { method: "delete", url: `/team/${id}`, data: null },
         {
           onSuccess: () => {
             queryClient.invalidateQueries({
-              queryKey: [`clients`],
+              queryKey: [`team`],
             });
             notification["success"]({
               message: t("Успешно удалена"),
@@ -53,16 +55,28 @@ const Client = () => {
         onCancel={() => showCreateModal({ open: false, data: {} })}
         footer={null}
         centered
-        title={get(createModal, "data._id") ? t("Update client") : t("Create client")}
-        width={500}
+        title={get(createModal, "data._id") ? t("Update team") : t("Create team")}
+        width={800}
         destroyOnClose
       >
         <Create {...{ showCreateModal, createModal }} />
       </Modal>
+      <Modal
+        open={moreModal?.open}
+        onOk={() => showMoreModal({ open: true, data: {} })}
+        onCancel={() => showMoreModal({ open: false, data: {} })}
+        footer={null}
+        centered
+        title={t("More informaiton")}
+        width={900}
+        destroyOnClose
+      >
+        <More {...{ showMoreModal, moreModal }} />
+      </Modal>
       <div>
         <Container.All
-          name="clients"
-          url="/clients"
+          name="team"
+          url="/team"
           params={{
             page,
             limit: 8,
@@ -73,7 +87,7 @@ const Client = () => {
               <div>
                 <div className="flex justify-between">
                   <Button
-                    title={t("Create clients")}
+                    title={t("Create team")}
                     icon={<CreateDoc />}
                     size="large"
                     onClick={() => showCreateModal({ open: true, data: {} })}
@@ -100,20 +114,23 @@ const Client = () => {
                   {items.map((card) => {
                     return (
                       <>
-                        <Col className="flex items-baseline justify-center">
+                        <Col className="flex items-baseline justify-center cursor-pointer"
+                          onClick={() => (
+                            showMoreModal({ open: true, data: card })
+                          )}
+                        >
                           <div className="mr-8 mb-4">
-                            <a href={get(card, "link")} target="_blank">
-                              <img
-                                className="object-cover rounded-[10px] w-[260px] h-[200px]"
-                                src={get(card, "images[0].medium")}
-                              />
-                            </a>
+                            <img
+                              className="object-cover rounded-[10px] w-[260px] h-[200px]"
+                              src={get(card, "images[0].medium")}
+                            />
                             <div className="btnPanel2">
                               <div
                                 className="editBtn"
-                                onClick={() =>
+                                onClick={(e) => (
+                                  e.stopPropagation(),
                                   showCreateModal({ open: true, data: card })
-                                }
+                                )}
                               >
                                 <Edit />
                               </div>
@@ -141,4 +158,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default Team;

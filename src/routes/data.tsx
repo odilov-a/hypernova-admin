@@ -1,6 +1,7 @@
 import { lazy } from "react";
 const Default = lazy(() => import("pages/default"));
 const Client = lazy(() => import("pages/client"));
+const Team = lazy(() => import("pages/team"));
 const User = lazy(() => import("pages/admin"));
 const NotFound = lazy(() => import("pages/notFound"));
 const LocalizationPanel = lazy(() => import("pages/localizationPanel"));
@@ -27,6 +28,12 @@ const privateRoutes: IRoute[] = [
     access: ["admin"],
     title: "Profile",
     element: <User />,
+  },
+  {
+    path: "/teams",
+    access: ["admin"],
+    title: "Jamoa",
+    element: <Team />,
   },
   {
     path: "/clients",

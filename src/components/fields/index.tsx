@@ -7,6 +7,7 @@ import FileUploadEmpower from "./fileUploadEmpower";
 import FileUpload from "./fileUpload";
 import AntAsyncSelect from "./ant-async-select";
 import AsyncSelect from "./AsyncSelect";
+import Textarea from "./textarea";
 
 export default {
   Input,
@@ -17,5 +18,6 @@ export default {
   FileUpload,
   FileUploadEmpower,
   AntAsyncSelect,
-  AsyncSelect
+  AsyncSelect,
+  Textarea
 };
