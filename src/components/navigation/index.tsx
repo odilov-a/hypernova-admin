@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
-import { FormOutlined, AppstoreAddOutlined, StarOutlined, CopyOutlined, FileImageOutlined, YoutubeOutlined } from "@ant-design/icons";
+import { StarOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import {
   Translation,
@@ -41,40 +41,10 @@ const Navigation: React.FC = () => {
   };
   const items: MenuItem[] = [
     {
-      key: "blogs",
-      label: "Bloglar",
-      icon: <FormOutlined />,
-      route: "/blogs",
-    },
-    {
-      key: "products",
-      label: "Mahsulotlar",
-      icon: <AppstoreAddOutlined />,
-      route: "/products",
-    },
-    {
-      key: "certificates",
-      label: "Sertifikatlar",
-      icon: <CopyOutlined />,
-      route: "/certificates",
-    },
-    {
-      key: "partners",
-      label: "Hamkorlar",
+      key: "clients",
+      label: "Mijozlar",
       icon: <StarOutlined />,
-      route: "/partners",
-    },
-    {
-      key: "galleries",
-      label: "Gallereya",
-      icon: <FileImageOutlined />,
-      route: "/galleries",
-    },
-    {
-      key: "youtubes",
-      label: "YouTube",
-      icon: <YoutubeOutlined />,
-      route: "/youtubes",
+      route: "/clients",
     },
     {
       key: "translations",

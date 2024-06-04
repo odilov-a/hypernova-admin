@@ -5,18 +5,10 @@ import Update from "./update";
 import { Edit } from "assets/images/icons";
 
 const User = () => {
-  const { get, queryClient, t } = useHooks();
+  const { get, t } = useHooks();
   const { Meta } = Card;
   const [editModal, showEditModal] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [successed, setSuccess] = useState<boolean>(false);
-  const [modal, setModal] = useState<{
-    isOpen: boolean;
-    data: null;
-  }>({
-    isOpen: false,
-    data: null,
-  });
   const onEdit = (item: object) => {
     showEditModal(true);
     setSelectedCard(item);
@@ -24,10 +16,6 @@ const User = () => {
   const { data } = useGet({
     name: "users/update-user",
     url: "users/get-me",
-    onSuccess: (data) => {
-    },
-    onError: (error) => {
-    },
   });
   const info = get(data, "data", {})
 

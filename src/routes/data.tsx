@@ -1,11 +1,6 @@
 import { lazy } from "react";
 const Default = lazy(() => import("pages/default"));
-const Blogs = lazy(() => import("pages/blogs"));
-const Youtube = lazy(() => import("pages/youtube"));
-const Certificate = lazy(() => import("pages/certificate"));
-const Partner = lazy(() => import("pages/partner"));
-const Products = lazy(() => import("pages/products"));
-const Gallery = lazy(() => import("pages/gallery"));
+const Client = lazy(() => import("pages/client"));
 const User = lazy(() => import("pages/admin"));
 const NotFound = lazy(() => import("pages/notFound"));
 const LocalizationPanel = lazy(() => import("pages/localizationPanel"));
@@ -34,40 +29,10 @@ const privateRoutes: IRoute[] = [
     element: <User />,
   },
   {
-    path: "/blogs",
+    path: "/clients",
     access: ["admin"],
-    title: "Bloglar",
-    element: <Blogs />,
-  },
-  {
-    path: "/youtubes",
-    access: ["admin"],
-    title: "YouTube",
-    element: <Youtube />,
-  },
-  {
-    path: "/galleries",
-    access: ["admin"],
-    title: "Gallereya",
-    element: <Gallery />,
-  },
-  {
-    path: "/products",
-    access: ["admin"],
-    title: "Mahsulotlar",
-    element: <Products />,
-  },
-  {
-    path: "/certificates",
-    access: ["admin"],
-    title: "Sertifikatlar",
-    element: <Certificate />,
-  },
-  {
-    path: "/partners",
-    access: ["admin"],
-    title: "Hamkorlar",
-    element: <Partner />,
+    title: "Mijozlar",
+    element: <Client />,
   },
   {
     path: "/translations",

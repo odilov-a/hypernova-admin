@@ -4,29 +4,32 @@ import { Fields, Button } from "components";
 import { Container } from "modules";
 import { useHooks } from "hooks";
 
-const Gallery = ({
-  showCreateModal,
-  setSuccess,
-}: any): JSX.Element => {
-  const { t } = useHooks();
+const Client = ({ showCreateModal, createModal }: any): JSX.Element => {
+  const { t, get } = useHooks();
+  let data = createModal.data && createModal?.data;
   return (
     <div>
       <Container.Form
-        url="/galleries"
-        method="post"
-        name="galleries"
+        url={data._id ? `clients/${get(data, "_id")}` : "clients"}
+        method={data._id ? "put" : "post"}
+        name="clients"
         configs={{
           headers: { "Content-Type": "multipart/form-data" },
         }}
         fields={[
           {
+            name: "link",
+            required: true,
+            value: get(data, "link"),
+          },
+          {
             name: "image",
             required: true,
+            value: get(data, "images[0].small"),
           },
         ]}
         onSuccess={(data, resetForm, query) => {
-          query.invalidateQueries({ queryKey: ["galleries"] });
-          setSuccess((prev: any) => !prev);
+          query.invalidateQueries({ queryKey: ["clients"] });
           resetForm();
           showCreateModal(false);
         }}
@@ -36,17 +39,26 @@ const Gallery = ({
       >
         {({ isSubmitting, setFieldValue }) => {
           return (
-            <Spin spinning={isSubmitting} tip="Verifying">              
+            <Spin spinning={isSubmitting} tip="Verifying">
+              <Field
+                component={Fields.Input}
+                name="link"
+                rootClassName="mb-[20px]"
+                label={t("Link")}
+                placeholder={t("Linkni kiriting")}
+                required
+              />
               <Field
                 component={Fields.FileUpload}
                 setFieldValue={setFieldValue}
-                rootClassName="mb-[40px]"
+                label={t("Rasmni yuklang") + " (png, jpg, jpeg)"}
+                rootClassName="mb-[10px]"
                 name="image"
                 accept="image/png, image/jpeg, image/jpg"
               />
               <Button
                 title={t("Saqlash")}
-                className="w-full mt-[20px]"
+                className="w-full mt-[10px]"
                 htmlType="submit"
                 size="large"
               />
@@ -58,4 +70,4 @@ const Gallery = ({
   );
 };
 
-export default Gallery;
+export default Client;
