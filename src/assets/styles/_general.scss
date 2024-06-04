@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  font-family: "Inter", sans-serif !important;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-background);
+}
+
+#root {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+main {
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fcfcfc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(70, 37, 216);
+}
+
+::selection {
+  background-color: rgba(2, 57, 87, 0.866282);
+  color: #ffffff;
+}
+
+// Animation
+
+.reveal {
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: all 2s ease;
+}
+
+.reveal.active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.ant-layout-content {
+  background-color: #fcfdff !important;
+}
+
+.ant-menu-inline-collapsed {
+  .sidebar-logo {
+    transition: all ease 0.3s;
+    margin-left: 2px !important;
+  }
+}
+
+.ant-layout-sider-children {
+  ul {
+    border-right: 2px solid #E6ECFE !important;
+    padding: 10px;
+  }
+}
+
+.btnPanel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+
+  .editBtn {
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 6px 7px 8px 9px;
+    background-color: #9ea3b5;
+    margin-right: 10px;
+  }
+
+  .deleteBtn {
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 7px 10px 9px 9px;
+    background-color: #ffa39e;
+  }
+}

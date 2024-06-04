@@ -1,0 +1,24 @@
+/* VARIABLES */
+
+// Sizes
+
+$xxs: 400px;
+$xs: 567px;
+$sm: 767px;
+$md: 992px;
+$lg: 1200px;
+$xl: 1400px;
+$xxl: 1600px;
+$xxxl: 1800px;
+
+:root {
+  --primary-font-family: "Inter", sans-serif;
+  --secondary-font-family: "Roboto", sans-serif;
+  --primary-background: #ffffff;
+  --font-color: #222222;
+}
+
+body.dark {
+  --primary-background: #444444;
+  --font-color: #ffffff;
+}
