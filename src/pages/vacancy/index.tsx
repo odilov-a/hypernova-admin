@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Modal, notification, Pagination } from "antd";
+import { Col, Row, Modal, notification, Pagination, Card } from "antd";
 import { Container } from "modules";
 import { useHooks, usePost } from "hooks";
 import { Button } from "components";
@@ -7,15 +7,16 @@ import Create from "./create";
 import More from "./more";
 import { Delete, Edit, CreateDoc } from "assets/images/icons";
 
-const Team = () => {
+const Vacancy = () => {
   const { get, queryClient, t } = useHooks();
+  const { Meta } = Card;
   const [createModal, showCreateModal] = useState({ open: false, data: {} });
   const [page, setPage] = useState(1);
   const [moreModal, showMoreModal] = useState({ open: false, data: {} });
   const { mutate } = usePost();
   const onDeleteHandler = (id: string) => {
     Modal.confirm({
-      title: t("Вы действительно хотите удалить team?"),
+      title: t("Вы действительно хотите удалить Vacancy?"),
       okText: t("да"),
       okType: "danger",
       cancelText: t("нет"),
@@ -26,11 +27,11 @@ const Team = () => {
   const deleteAction = (id: string) => {
     if (id) {
       mutate(
-        { method: "delete", url: `/team/${id}`, data: null },
+        { method: "delete", url: `/vacancies/${id}`, data: null },
         {
           onSuccess: () => {
             queryClient.invalidateQueries({
-              queryKey: [`team`],
+              queryKey: [`vacancies`],
             });
             notification["success"]({
               message: t("Успешно удалена"),
@@ -55,7 +56,7 @@ const Team = () => {
         onCancel={() => showCreateModal({ open: false, data: {} })}
         footer={null}
         centered
-        title={get(createModal, "data._id") ? t("Update team") : t("Create team")}
+        title={get(createModal, "data._id") ? t("Update vacancy") : t("Create vacancy")}
         width={800}
         destroyOnClose
       >
@@ -75,8 +76,8 @@ const Team = () => {
       </Modal>
       <div>
         <Container.All
-          name="team"
-          url="/team"
+          name="vacancies"
+          url="/vacancies"
           params={{
             page,
             limit: 8,
@@ -87,7 +88,7 @@ const Team = () => {
               <div>
                 <div className="flex justify-between">
                   <Button
-                    title={t("Create team")}
+                    title={t("Create vacancy")}
                     icon={<CreateDoc />}
                     size="large"
                     onClick={() => showCreateModal({ open: true, data: {} })}
@@ -114,15 +115,25 @@ const Team = () => {
                   {items.map((card) => {
                     return (
                       <>
-                        <Col className="flex items-baseline justify-center cursor-pointer"
+                        <Col
+                          className="cursor-pointer"
                           onClick={() => (
                             showMoreModal({ open: true, data: card })
                           )}
                         >
-                          <div className="mr-8 mb-4">
-                            <img
-                              className="object-cover rounded-[10px] w-[260px] h-[200px]"
-                              src={get(card, "images[0].medium")}
+                          <div className="mr-8 mb-4 w-[250px] h-[150px]">
+                          <Meta
+                              className="pb-[40px] p-0"
+                              title={
+                                <div className="mb-1">
+                                  <p className="dark:text-[#e5e7eb] block truncate"><strong>{(get(card, "title", ""))}</strong></p>
+                                </div>
+                              }
+                              description={
+                                <div className="flex justify-between items-center mb-2">
+                                  <p className="dark:text-[#e5e7eb] line-clamp-3">{(get(card, "description", ""))}</p>
+                                </div>
+                              }
                             />
                             <div className="btnPanel2">
                               <div
@@ -159,4 +170,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Vacancy;

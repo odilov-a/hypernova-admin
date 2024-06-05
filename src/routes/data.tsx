@@ -3,6 +3,8 @@ const Default = lazy(() => import("pages/default"));
 const Client = lazy(() => import("pages/client"));
 const Team = lazy(() => import("pages/team"));
 const User = lazy(() => import("pages/admin"));
+const Vacancy = lazy(() => import("pages/vacancy"));
+const Portfolio = lazy(() => import("pages/portfolio"));
 const NotFound = lazy(() => import("pages/notFound"));
 const LocalizationPanel = lazy(() => import("pages/localizationPanel"));
 // const Login = lazy(() => import("pages/login"));
@@ -40,6 +42,18 @@ const privateRoutes: IRoute[] = [
     access: ["admin"],
     title: "Mijozlar",
     element: <Client />,
+  },
+  {
+    path: "/vacancies",
+    access: ["admin"],
+    title: "Vakansiyalar",
+    element: <Vacancy />,
+  },
+  {
+    path: "/portfolio",
+    access: ["admin"],
+    title: "Portfolio",
+    element: <Portfolio />,
   },
   {
     path: "/translations",

@@ -7,7 +7,7 @@ import Create from "./create";
 import More from "./more";
 import { Delete, Edit, CreateDoc } from "assets/images/icons";
 
-const Team = () => {
+const Portfolio = () => {
   const { get, queryClient, t } = useHooks();
   const [createModal, showCreateModal] = useState({ open: false, data: {} });
   const [page, setPage] = useState(1);
@@ -15,7 +15,7 @@ const Team = () => {
   const { mutate } = usePost();
   const onDeleteHandler = (id: string) => {
     Modal.confirm({
-      title: t("Вы действительно хотите удалить team?"),
+      title: t("Вы действительно хотите удалить Portfolio?"),
       okText: t("да"),
       okType: "danger",
       cancelText: t("нет"),
@@ -26,11 +26,11 @@ const Team = () => {
   const deleteAction = (id: string) => {
     if (id) {
       mutate(
-        { method: "delete", url: `/team/${id}`, data: null },
+        { method: "delete", url: `/portfolio/${id}`, data: null },
         {
           onSuccess: () => {
             queryClient.invalidateQueries({
-              queryKey: [`team`],
+              queryKey: [`portfolio`],
             });
             notification["success"]({
               message: t("Успешно удалена"),
@@ -55,7 +55,7 @@ const Team = () => {
         onCancel={() => showCreateModal({ open: false, data: {} })}
         footer={null}
         centered
-        title={get(createModal, "data._id") ? t("Update team") : t("Create team")}
+        title={get(createModal, "data._id") ? t("Update portfolio") : t("Create portfolio")}
         width={800}
         destroyOnClose
       >
@@ -68,15 +68,15 @@ const Team = () => {
         footer={null}
         centered
         title={t("More informaiton")}
-        width={900}
+        width={700}
         destroyOnClose
       >
         <More {...{ showMoreModal, moreModal }} />
       </Modal>
       <div>
         <Container.All
-          name="team"
-          url="/team"
+          name="portfolio"
+          url="/portfolio"
           params={{
             page,
             limit: 8,
@@ -87,7 +87,7 @@ const Team = () => {
               <div>
                 <div className="flex justify-between">
                   <Button
-                    title={t("Create team")}
+                    title={t("Create portfolio")}
                     icon={<CreateDoc />}
                     size="large"
                     onClick={() => showCreateModal({ open: true, data: {} })}
@@ -159,4 +159,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Portfolio;

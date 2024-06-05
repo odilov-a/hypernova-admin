@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import { useHooks } from "hooks";
 import { Link } from "react-router-dom";
 import { Translation } from "assets/images/icons";
-import { StarOutlined, TeamOutlined } from "@ant-design/icons";
+import { StarOutlined, TeamOutlined, UserAddOutlined, DiffOutlined } from "@ant-design/icons";
 
 interface MenuItem {
   key: string;
@@ -37,6 +37,18 @@ const Navigation: React.FC = () => {
       label: "Mijozlar",
       icon: <StarOutlined />,
       route: "/clients",
+    },
+    {
+      key: "vacancies",
+      label: "Vakansiyalar",
+      icon: <UserAddOutlined />,
+      route: "/vacancies",
+    },
+    {
+      key: "portfolio",
+      label: "Portfolio",
+      icon: <DiffOutlined />,
+      route: "/portfolio",
     },
     {
       key: "translations",
