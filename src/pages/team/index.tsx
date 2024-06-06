@@ -4,6 +4,7 @@ import { Container } from "modules";
 import { useHooks, usePost } from "hooks";
 import { Button } from "components";
 import Create from "./create";
+import PositionCreate from "./positionCreate";
 import More from "./more";
 import { Delete, Edit, CreateDoc } from "assets/images/icons";
 
@@ -11,6 +12,7 @@ const Team = () => {
   const { get, queryClient, t } = useHooks();
   const [createModal, showCreateModal] = useState({ open: false, data: {} });
   const [page, setPage] = useState(1);
+  const [createPosition, showCreatePosition] = useState(false)
   const [moreModal, showMoreModal] = useState({ open: false, data: {} });
   const { mutate } = usePost();
   const onDeleteHandler = (id: string) => {
@@ -51,6 +53,17 @@ const Team = () => {
   return (
     <div className="flex">
       <Modal
+        open={createPosition}
+        onCancel={() => showCreatePosition(false)}
+        footer={null}
+        centered
+        title={t("Create new position")}
+        width={500}
+        destroyOnClose
+      >
+        <PositionCreate {...{ createPosition, showCreatePosition }} />
+      </Modal>
+      <Modal
         open={createModal.open}
         onCancel={() => showCreateModal({ open: false, data: {} })}
         footer={null}
@@ -59,7 +72,7 @@ const Team = () => {
         width={800}
         destroyOnClose
       >
-        <Create {...{ showCreateModal, createModal }} />
+        <Create {...{ showCreateModal, createModal, showCreatePosition }} />
       </Modal>
       <Modal
         open={moreModal?.open}

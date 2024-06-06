@@ -1,10 +1,12 @@
 import { Spin } from "antd";
 import { Field } from "formik";
-import { Fields, Button } from "components";
-import { Container } from "modules";
 import { useHooks } from "hooks";
+import { Container } from "modules";
+import { Fields, Button } from "components";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
-const Team = ({ showCreateModal, createModal }: any): JSX.Element => {
+const Team = ({ showCreateModal, createModal, showCreatePosition }: any): JSX.Element => {
+  
   const { t, get } = useHooks();
   let data = createModal.data && createModal?.data;
   return (
@@ -110,14 +112,28 @@ const Team = ({ showCreateModal, createModal }: any): JSX.Element => {
                 placeholder={t("Qo'llanilgan texnologiyalar")}
                 required
               />
-              <Field
-                component={Fields.AntAsyncSelect}
-                name="position"
-                rootClassName="mb-[20px]"
-                label={t("Lavozimni kiriting")}
-                placeholder={t("Lavozimni kiriting")}
-                required
-              />
+              <div className="flex justify-between">
+                <Field
+                  component={Fields.AntAsyncSelect}
+                  name="position"
+                  placeholder={t("position")}
+                  url="/position"
+                  optionLabel="name"
+                  optionValue="_id"
+                  onChange={(option: { [key: string]: any }) => {
+                    setFieldValue("position", option);
+                  }}
+                  className="w-full mb-[20px]"
+                  params={{ limit: 10 }}
+                  rootClassName="w-full"
+                />
+                <div
+                  className="ml-[20px] flex justify-center items-center w-[40px] h-[40px] cursor-pointer bg-[#3367F6] rounded-[5px]"
+                  onClick={() => showCreatePosition(true)}
+                >
+                  <PlusCircleOutlined style={{ color: "#fff" }} />
+                </div>
+              </div>
               <Field
                 component={Fields.FileUpload}
                 setFieldValue={setFieldValue}
@@ -127,10 +143,8 @@ const Team = ({ showCreateModal, createModal }: any): JSX.Element => {
                 accept="image/png, image/jpeg, image/jpg"
               />
               <Button
-                title={t("Saqlash")}
-                className="w-full mt-[20px]"
-                htmlType="submit"
-                size="large"
+                title={t("Saqlash")} className="w-full mt-[68px]"
+                htmlType="submit" size="large"
               />
               </div>
               </div>
