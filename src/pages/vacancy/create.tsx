@@ -20,18 +20,18 @@ const Vacancy = ({ showCreateModal, createModal }: any): JSX.Element => {
             value: get(data, "title"),
           },
           {
-            name: "descriptionUz",
             required: true,
+            name: "descriptionUz",
             value: get(data, "descriptionUz"),
           },
           {
-            name: "descriptionRu",
             required: true,
+            name: "descriptionRu",
             value: get(data, "descriptionRu"),
           },
           {
-            name: "descriptionEn",
             required: true,
+            name: "descriptionEn",
             value: get(data, "descriptionEn"),
           },
         ]}
@@ -47,48 +47,43 @@ const Vacancy = ({ showCreateModal, createModal }: any): JSX.Element => {
         {({ isSubmitting }) => {
           return (
             <Spin spinning={isSubmitting} tip="Verifying">
-              <div className="">
+              <div className="mt-3">
               <Field
-                component={Fields.Input}
-                name="title"
-                rootClassName="mb-[15px]"
-                label={t("Sarlavha")}
-                placeholder={t("Sarlavha")}
                 required
+                name="title"
+                label={t("Sarlavha")}
+                rootClassName="mb-[10px]"
+                component={Fields.Input}
+                placeholder={t("Sarlavha")}
               />
               <Field
-                component={Fields.Textarea}
-                name="descriptionUz"
+                required
                 rows={3}
-                rootClassName="mb-[15px]"
+                name="descriptionUz"
+                rootClassName="mb-[10px]"
+                component={Fields.Textarea}
                 label={t("Ma'lumot (Uzbekcha)")}
                 placeholder={t("Ma'lumot (Uzbekcha)")}
-                required
               />
               <Field
-                component={Fields.Textarea}
-                name="descriptionRu"
+                required
                 rows={3}
-                rootClassName="mb-[15px]"
+                name="descriptionRu"
+                rootClassName="mb-[10px]"
+                component={Fields.Textarea}
                 label={t("Ma'lumot (Ruscha)")}
                 placeholder={t("Ma'lumot (Ruscha)")}
-                required
               />
               <Field
-                component={Fields.Textarea}
-                name="descriptionEn"
+                required
                 rows={3}
-                rootClassName="mb-[15px]"
+                name="descriptionEn"
+                rootClassName="mb-[10px]"
+                component={Fields.Textarea}
                 label={t("Ma'lumot (Inglizcha)")}
                 placeholder={t("Ma'lumot (Inglizcha)")}
-                required
               />
-              <Button
-                title={t("Saqlash")}
-                className="w-full mt-[15px]"
-                htmlType="submit"
-                size="large"
-              />
+              <Button title={t("Saqlash")} className="w-full mt-[15px]" htmlType="submit" size="large"/>
               </div>
             </Spin>
           );

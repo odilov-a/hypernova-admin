@@ -18,33 +18,33 @@ const Portfolio = ({ showCreateModal, createModal }: any): JSX.Element => {
         }}
         fields={[
           {
-            name: "projectNameUz",
             required: true,
+            name: "projectNameUz",
             value: get(data, "projectNameUz"),
           },
           {
-            name: "projectNameRu",
             required: true,
+            name: "projectNameRu",
             value: get(data, "projectNameRu"),
           },
           {
-            name: "projectNameEn",
             required: true,
+            name: "projectNameEn",
             value: get(data, "projectNameEn"),
           },
           {
-            name: "clientUz",
             required: true,
+            name: "clientUz",
             value: get(data, "clientUz"),
           },
           {
-            name: "clientRu",
             required: true,
+            name: "clientRu",
             value: get(data, "clientRu"),
           },
           {
-            name: "clientEn",
             required: true,
+            name: "clientEn",
             value: get(data, "clientEn"),
           },
           {
@@ -65,74 +65,68 @@ const Portfolio = ({ showCreateModal, createModal }: any): JSX.Element => {
         {({ isSubmitting, setFieldValue }) => {
           return (
             <Spin spinning={isSubmitting} tip="Verifying">
-              <div className="flex justify-between">
+              <div className="flex justify-between mt-5">
                 <div className="w-[48%]">
                 <Field
-                  component={Fields.Input}
+                  required
                   name="projectNameUz"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Loyiha nomi (Uzbekcha)")}
                   placeholder={t("Loyiha nomi (Uzbekcha)")}
-                  required
                 />
                 <Field
-                  component={Fields.Input}
+                  required
                   name="projectNameRu"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Loyiha nomi (Ruscha)")}
                   placeholder={t("Loyiha nomi (Ruscha)")}
-                  required
                 />
                 <Field
-                  component={Fields.Input}
+                  required
                   name="projectNameEn"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Loyiha nomi (Inglizcha)")}
                   placeholder={t("Loyiha nomi (Inglizcha)")}
-                  required
                 />
                 </div>
                 <div className="w-[48%]">
                 <Field
-                  component={Fields.Input}
+                  required
                   name="clientUz"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Mijoz (Uzbekcha)")}
                   placeholder={t("Mijoz (Uzbekcha)")}
-                  required
                 />
                 <Field
-                  component={Fields.Input}
+                  required
                   name="clientRu"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Mijoz (Ruscha)")}
                   placeholder={t("Mijoz (Ruscha)")}
-                  required
                 />
                 <Field
-                  component={Fields.Input}
+                  required
                   name="clientEn"
-                  rootClassName="mb-[20px]"
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
                   label={t("Mijoz (Inglizcha)")}
                   placeholder={t("Mijoz (Inglizcha)")}
-                  required
                 />
                 </div>
               </div>
+              <label>{("Rasmni yuklang")}</label>
               <Field
+                name="image"
                 component={Fields.FileUpload}
                 setFieldValue={setFieldValue}
-                label={t("Rasmni yuklang") + " (png, jpg, jpeg)"}
-                rootClassName="mb-[10px]"
-                name="image"
                 accept="image/png, image/jpeg, image/jpg"
               />
-              <Button
-                title={t("Saqlash")}
-                className="w-full mt-[20px]"
-                htmlType="submit"
-                size="large"
-              />
+              <Button title={t("Saqlash")} className="w-full mt-[10px]" htmlType="submit" size="large"/>
             </Spin>
           );
         }}

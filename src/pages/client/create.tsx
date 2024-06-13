@@ -40,28 +40,24 @@ const Client = ({ showCreateModal, createModal }: any): JSX.Element => {
         {({ isSubmitting, setFieldValue }) => {
           return (
             <Spin spinning={isSubmitting} tip="Verifying">
-              <Field
-                component={Fields.Input}
-                name="link"
-                rootClassName="mb-[20px]"
-                label={t("Link")}
-                placeholder={t("Linkni kiriting")}
-                required
-              />
-              <Field
-                component={Fields.FileUpload}
-                setFieldValue={setFieldValue}
-                label={t("Rasmni yuklang") + " (png, jpg, jpeg)"}
-                rootClassName="mb-[10px]"
-                name="image"
-                accept="image/png, image/jpeg, image/jpg"
-              />
-              <Button
-                title={t("Saqlash")}
-                className="w-full mt-[10px]"
-                htmlType="submit"
-                size="large"
-              />
+              <div className="mt-5">
+                <Field
+                  required
+                  name="link"
+                  label={t("Link")}
+                  component={Fields.Input}
+                  rootClassName="mb-[10px]"
+                  placeholder={t("Linkni kiriting")}
+                />
+                <label>{("Rasmni yuklang")}</label>
+                <Field
+                  name="image"
+                  component={Fields.FileUpload}
+                  setFieldValue={setFieldValue}
+                  accept="image/png, image/jpeg, image/jpg"
+                />
+                <Button title={t("Saqlash")} className="w-full mt-[10px]" htmlType="submit"size="large"/>
+              </div>
             </Spin>
           );
         }}
