@@ -19,5 +19,5 @@ export default {
   FileUploadEmpower,
   AntAsyncSelect,
   AsyncSelect,
-  Textarea
+  Textarea,
 };

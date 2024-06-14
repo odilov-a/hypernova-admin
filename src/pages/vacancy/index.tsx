@@ -75,24 +75,13 @@ const Vacancy = () => {
         <More {...{ showMoreModal, moreModal }} />
       </Modal>
       <div>
-        <Container.All
-          name="vacancies"
-          url="/vacancies"
-          params={{
-            page,
-            limit: 8,
-          }}
-        >
+        <Container.All name="vacancies" url="/vacancies" params={{ page, limit: 8, }}>
           {({ items, meta }) => {
             return (
               <div>
                 <div className="flex justify-between">
-                  <Button
-                    title={t("Create vacancy")}
-                    icon={<CreateDoc />}
-                    size="large"
-                    onClick={() => showCreateModal({ open: true, data: {} })}
-                  />
+                  <Button title={t("Create vacancy")} icon={<CreateDoc />} size="large"
+                    onClick={() => showCreateModal({ open: true, data: {} })} />
                   {meta && meta.perPage && (
                     <div className="mt-[20px] flex justify-center">
                       <Pagination
@@ -115,12 +104,8 @@ const Vacancy = () => {
                   {items.map((card) => {
                     return (
                       <>
-                        <Col
-                          className="cursor-pointer"
-                          onClick={() => (
-                            showMoreModal({ open: true, data: card })
-                          )}
-                        >
+                        <Col className="cursor-pointer"
+                          onClick={() => (showMoreModal({ open: true, data: card }))}>
                           <div className="mr-8 mb-4 w-[250px] h-[150px]">
                           <Meta
                               className="pb-[40px] p-0"

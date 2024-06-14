@@ -60,24 +60,13 @@ const Client = () => {
         <Create {...{ showCreateModal, createModal }} />
       </Modal>
       <div>
-        <Container.All
-          name="clients"
-          url="/clients"
-          params={{
-            page,
-            limit: 8,
-          }}
-        >
+        <Container.All name="clients" url="/clients" params={{ page, limit: 8, }} >
           {({ items, meta }) => {
             return (
               <div>
                 <div className="flex justify-between">
-                  <Button
-                    title={t("Create clients")}
-                    icon={<CreateDoc />}
-                    size="large"
-                    onClick={() => showCreateModal({ open: true, data: {} })}
-                  />
+                  <Button title={t("Create clients")} icon={<CreateDoc />} size="large"
+                    onClick={() => showCreateModal({ open: true, data: {} })} />
                   {meta && meta.perPage && (
                     <div className="mt-[20px] flex justify-center">
                       <Pagination

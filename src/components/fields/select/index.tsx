@@ -1,79 +1,52 @@
-import { Select } from "antd";
-import { FieldProps } from "formik";
-import { FC } from "react";
-interface IAntSelect extends FieldProps<any, any> {
-  options: any[];
-  isClearable?: boolean;
-  isMulti?: boolean;
-  isDisabled?: boolean;
-  isSearchable?: boolean;
-  label?: string;
-  onChange?: Function;
-  placeholder?: string;
-  errorMessage?: string | any;
-  rootClassName?: string;
-  className?: string;
-}
+import React, { useState } from 'react';
+import Select from 'react-select';
+import { useHooks } from 'hooks';
 
-const AntSelect: FC<IAntSelect> = (props: IAntSelect) => {
+const AsyncSelect: React.FC = (props: any) => {
+
   const {
-    options,
-    isClearable,
-    isMulti = false,
-    isDisabled,
-    label,
-    isSearchable,
-    field: { name, value },
-    placeholder = "Введите",
-    errorMessage,
+    onChange = () => { },
+    isSearchable = true,
+    disableOptions = [],
+    isClearable = true,
+    isDisabled = false,
+    placeholder = 'Выберите...',
+    optionLabel,
+    optionValue,
     rootClassName,
+    label,
+    options,
+    size = 'large',
+    errorMessage,
+    isMulti,
+    field: { name },
+    form: { errors, setFieldValue, setFieldTouched, touched, values, },
     className,
-    onChange = () => {},
-    form: { setFieldValue, setFieldTouched, errors, touched },
-  } = props;
+  } = props
+
+  const { get } = useHooks()
 
   return (
-    <div className={rootClassName}>
-      {label && (
-        <p className='mb-1 text-base ant-label font-semibold'>{label}</p>
-      )}
+    <div className={rootClassName + ' input relative'}>
+      {label ? <p className="text-[#9EA3B5] px-[12px] py-[6px] bg-[#E6ECFE] dark:bg-[#454d70] rounded-[6px] inline-block mb-[12px]">{label}</p> : null}
       <Select
-        className={`
-          ${className}
-          w-full 
-          font-medium 
-          
-          `}
+        value={options.find((option:any) => option.value === values[name])}
+        getOptionLabel={option => option[optionLabel]}
+        getOptionValue={option => option[optionValue]}
         key={name}
-        size='large'
-        disabled={isDisabled}
-        {...(isMulti ? { mode: "multiple" } : "")}
-        status={touched[name] && errors[name] ? "error" : ""}
-        value={value}
-        allowClear={isClearable}
-        showSearch={isSearchable}
-        filterOption={(input, option) =>
-          (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-        }
-        onBlur={() => {
-          if (!value) {
-            setFieldTouched(name, true);
-          }
-        }}
-        placeholder={placeholder}
-        onChange={(value, data) => {
-          setFieldValue(name, data);
-          onChange(value, data);
-        }}
         options={options}
+        placeholder={placeholder}
+        className={className}
+        onChange={option => {
+          setFieldValue(name, option)
+        }}
+        isDisabled={isDisabled}
+        isSearchable={isSearchable}
+        isClearable={isClearable}
+        isMulti={isMulti}
       />
-      {touched[name] && errors[name] && (
-        <small className='text-xs font-semibold text-red-500'>
-          {errorMessage ? errorMessage : errors[name]}
-        </small>
-      )}
     </div>
   );
 };
 
-export default AntSelect;
+export default AsyncSelect;

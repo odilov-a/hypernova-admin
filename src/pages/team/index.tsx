@@ -87,24 +87,13 @@ const Team = () => {
         <More {...{ showMoreModal, moreModal }} />
       </Modal>
       <div>
-        <Container.All
-          name="team"
-          url="/team"
-          params={{
-            page,
-            limit: 8,
-          }}
-        >
+        <Container.All name="team" url="/team" params={{ page, limit: 8, }} >
           {({ items, meta }) => {
             return (
               <div>
                 <div className="flex justify-between">
-                  <Button
-                    title={t("Create team")}
-                    icon={<CreateDoc />}
-                    size="large"
-                    onClick={() => showCreateModal({ open: true, data: {} })}
-                  />
+                  <Button title={t("Create team")} icon={<CreateDoc />} size="large"
+                    onClick={() => showCreateModal({ open: true, data: {} })} />
                   {meta && meta.perPage && (
                     <div className="mt-[20px] flex justify-center">
                       <Pagination
@@ -128,10 +117,7 @@ const Team = () => {
                     return (
                       <>
                         <Col className="flex items-baseline justify-center cursor-pointer"
-                          onClick={() => (
-                            showMoreModal({ open: true, data: card })
-                          )}
-                        >
+                          onClick={() => (showMoreModal({ open: true, data: card }))}>
                           <div className="mr-8 mb-4">
                             <img
                               className="object-cover rounded-[10px] w-[260px] h-[200px]"

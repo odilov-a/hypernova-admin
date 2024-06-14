@@ -10,10 +10,8 @@ const Team = ({ showCreateModal, createModal, showCreatePosition }: any): JSX.El
   let data = createModal.data && createModal?.data;
   return (
     <div>
-      <Container.Form
-        url={data._id ? `team/${get(data, "_id")}` : "team"}
-        method={data._id ? "put" : "post"}
-        name="team"
+      <Container.Form url={data._id ? `team/${get(data, "_id")}` : "team"}
+        method={data._id ? "put" : "post"} name="team"
         configs={{
           headers: { "Content-Type": "multipart/form-data" },
         }}

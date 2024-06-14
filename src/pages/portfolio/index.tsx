@@ -56,7 +56,7 @@ const Portfolio = () => {
         footer={null}
         centered
         title={get(createModal, "data._id") ? t("Update portfolio") : t("Create portfolio")}
-        width={800}
+        width={1200}
         destroyOnClose
       >
         <Create {...{ showCreateModal, createModal }} />
@@ -74,24 +74,13 @@ const Portfolio = () => {
         <More {...{ showMoreModal, moreModal }} />
       </Modal>
       <div>
-        <Container.All
-          name="portfolio"
-          url="/portfolio"
-          params={{
-            page,
-            limit: 8,
-          }}
-        >
+        <Container.All name="portfolio" url="/portfolio" params={{ page, limit: 8, }} >
           {({ items, meta }) => {
             return (
               <div>
                 <div className="flex justify-between">
-                  <Button
-                    title={t("Create portfolio")}
-                    icon={<CreateDoc />}
-                    size="large"
-                    onClick={() => showCreateModal({ open: true, data: {} })}
-                  />
+                  <Button title={t("Create portfolio")} icon={<CreateDoc />} size="large"
+                    onClick={() => showCreateModal({ open: true, data: {} })} />
                   {meta && meta.perPage && (
                     <div className="mt-[20px] flex justify-center">
                       <Pagination
@@ -115,15 +104,10 @@ const Portfolio = () => {
                     return (
                       <>
                         <Col className="flex items-baseline justify-center cursor-pointer"
-                          onClick={() => (
-                            showMoreModal({ open: true, data: card })
-                          )}
-                        >
+                          onClick={() => (showMoreModal({ open: true, data: card }))}>
                           <div className="mr-8 mb-4">
-                            <img
-                              className="object-cover rounded-[10px] w-[260px] h-[200px]"
-                              src={get(card, "images[0].medium")}
-                            />
+                            <img className="object-cover rounded-[10px] w-[260px] h-[200px]"
+                              src={get(card, "images[0].medium")} />
                             <div className="btnPanel2">
                               <div
                                 className="editBtn"

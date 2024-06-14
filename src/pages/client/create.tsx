@@ -11,8 +11,7 @@ const Client = ({ showCreateModal, createModal }: any): JSX.Element => {
     <div>
       <Container.Form
         url={data._id ? `clients/${get(data, "_id")}` : "clients"}
-        method={data._id ? "put" : "post"}
-        name="clients"
+        method={data._id ? "put" : "post"} name="clients"
         configs={{
           headers: { "Content-Type": "multipart/form-data" },
         }}

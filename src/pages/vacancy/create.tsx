@@ -11,8 +11,7 @@ const Vacancy = ({ showCreateModal, createModal }: any): JSX.Element => {
     <div>
       <Container.Form
         url={data._id ? `vacancies/${get(data, "_id")}` : "vacancies"}
-        method={data._id ? "put" : "post"}
-        name="vacancies"
+        method={data._id ? "put" : "post"} name="vacancies"
         fields={[
           {
             name: "title",
