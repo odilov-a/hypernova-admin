@@ -37,7 +37,6 @@ const Localization = () => {
       changedLangCode: langCode,
     });
   }
-
   useEffect(() => {
     if (inputValue.data) {
       mutate({
@@ -55,12 +54,8 @@ const Localization = () => {
   return (
     <div>
       <Header {...{setSearchWord}}/>
-      <h1>{t("Localization")}</h1>
-      <Container.All
-        url={`/translations/${inputValueDebouncedSearch && "search/" + inputValueDebouncedSearch}`}
-        name='localization'
-        
-      >
+      <Container.All url={`/translations/${inputValueDebouncedSearch && "search/" + inputValueDebouncedSearch}`}
+        name='localization'>
         {({ isLoading, meta, items }) => {
           return (
             <div>

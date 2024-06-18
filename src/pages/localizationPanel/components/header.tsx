@@ -4,10 +4,8 @@ import { useHooks } from "hooks";
 
 const Header = ({setSearchWord}:any) => {
   const { t } = useHooks();
-
   return (
     <div>
-      <h1>{t("Header")}</h1>
       <Formik initialValues={{ search: "" }} onSubmit={() => {}}>
         {() => {
           return (

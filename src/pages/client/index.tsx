@@ -4,11 +4,13 @@ import { Container } from "modules";
 import { useHooks, usePost } from "hooks";
 import { Button } from "components";
 import Create from "./create";
+import More from "./more";
 import { Delete, Edit, CreateDoc } from "assets/images/icons";
 
 const Client = () => {
   const { get, queryClient, t } = useHooks();
   const [createModal, showCreateModal] = useState({ open: false, data: {} });
+  const [moreModal, showMoreModal] = useState({ open: false, data: {} });
   const [page, setPage] = useState(1);
   const { mutate } = usePost();
   const onDeleteHandler = (id: string) => {
@@ -59,6 +61,18 @@ const Client = () => {
       >
         <Create {...{ showCreateModal, createModal }} />
       </Modal>
+      <Modal
+        open={moreModal?.open}
+        onOk={() => showMoreModal({ open: true, data: {} })}
+        onCancel={() => showMoreModal({ open: false, data: {} })}
+        footer={null}
+        centered
+        title={t("More informaiton")}
+        width={700}
+        destroyOnClose
+      >
+        <More {...{ showMoreModal, moreModal }} />
+      </Modal>
       <div>
         <Container.All name="clients" url="/clients" params={{ page, limit: 8, }} >
           {({ items, meta }) => {
@@ -89,28 +103,30 @@ const Client = () => {
                   {items.map((card) => {
                     return (
                       <>
-                        <Col className="flex items-baseline justify-center">
+                        <Col className="flex items-baseline justify-center cursor-pointer"
+                          onClick={() => (showMoreModal({ open: true, data: card }))}
+                        >
                           <div className="mr-8 mb-4">
-                            <a href={get(card, "link")} target="_blank">
-                              <img
-                                className="object-cover rounded-[10px] w-[260px] h-[200px]"
-                                src={get(card, "images[0].medium")}
-                              />
-                            </a>
+                            <img
+                              className="object-cover rounded-[10px] w-[260px] h-[200px]"
+                              src={get(card, "images[0].medium")}
+                            />
                             <div className="btnPanel2">
                               <div
                                 className="editBtn"
-                                onClick={() =>
+                                onClick={(e) => (
+                                  e.stopPropagation(),
                                   showCreateModal({ open: true, data: card })
-                                }
+                                )}
                               >
                                 <Edit />
                               </div>
                               <div
-                                onClick={() =>
-                                  onDeleteHandler(get(card, "_id", ""))
-                                }
                                 className="deleteBtn"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onDeleteHandler(get(card, "_id", ""));
+                                }}
                               >
                                 <Delete />
                               </div>

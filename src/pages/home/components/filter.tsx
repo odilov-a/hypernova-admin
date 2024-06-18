@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 
 const Filter = () => {
   const { qs, navigate, get, query } = useHooks();
-
   return (
     <div className='mb-5'>
       <Formik

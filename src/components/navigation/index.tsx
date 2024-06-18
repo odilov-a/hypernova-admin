@@ -28,25 +28,25 @@ const Navigation: React.FC = () => {
   const items: MenuItem[] = [
     {
       key: "teams",
-      label: "Jamoa",
+      label: t("Jamoa"),
       icon: <TeamOutlined />,
       route: "/teams",
     },
     {
       key: "clients",
-      label: "Mijozlar",
+      label: t("Mijozlar"),
       icon: <StarOutlined />,
       route: "/clients",
     },
     {
       key: "vacancies",
-      label: "Vakansiyalar",
+      label: t("Vakansiyalar"),
       icon: <UserAddOutlined />,
       route: "/vacancies",
     },
     {
       key: "portfolio",
-      label: "Portfolio",
+      label: t("Portfolio"),
       icon: <DiffOutlined />,
       route: "/portfolio",
     },
