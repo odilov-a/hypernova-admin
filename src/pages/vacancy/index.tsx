@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Col, Row, Modal, notification, Pagination, Card } from "antd";
-import { Container } from "modules";
+import { Delete, Edit, CreateDoc } from "assets/images/icons";
 import { useHooks, usePost } from "hooks";
+import { Container } from "modules";
 import { Button } from "components";
 import Create from "./create";
 import More from "./more";
-import { Delete, Edit, CreateDoc } from "assets/images/icons";
+import "./style.scss";
 
 const Vacancy = () => {
   const { get, queryClient, t } = useHooks();
@@ -56,7 +57,11 @@ const Vacancy = () => {
         onCancel={() => showCreateModal({ open: false, data: {} })}
         footer={null}
         centered
-        title={get(createModal, "data._id") ? t("Update vacancy") : t("Create vacancy")}
+        title={
+          get(createModal, "data._id")
+            ? t("Update vacancy")
+            : t("Create vacancy")
+        }
         width={800}
         destroyOnClose
       >
@@ -75,13 +80,21 @@ const Vacancy = () => {
         <More {...{ showMoreModal, moreModal }} />
       </Modal>
       <div>
-        <Container.All name="vacancies" url="/vacancies" params={{ page, limit: 8, }}>
+        <Container.All
+          name="vacancies"
+          url="/vacancies"
+          params={{ page, limit: 8 }}
+        >
           {({ items, meta }) => {
             return (
               <div>
                 <div className="flex justify-between">
-                  <Button title={t("Create vacancy")} icon={<CreateDoc />} size="large"
-                    onClick={() => showCreateModal({ open: true, data: {} })} />
+                  <Button
+                    title={t("Create vacancy")}
+                    icon={<CreateDoc />}
+                    size="large"
+                    onClick={() => showCreateModal({ open: true, data: {} })}
+                  />
                   {meta && meta.perPage && (
                     <div className="mt-[20px] flex justify-center">
                       <Pagination
@@ -104,19 +117,27 @@ const Vacancy = () => {
                   {items.map((card) => {
                     return (
                       <>
-                        <Col className="cursor-pointer"
-                          onClick={() => (showMoreModal({ open: true, data: card }))}>
+                        <Col
+                          className="cursor-pointer"
+                          onClick={() =>
+                            showMoreModal({ open: true, data: card })
+                          }
+                        >
                           <div className="mr-8 mb-4 w-[250px] h-[150px]">
-                          <Meta
+                            <Meta
                               className="pb-[40px] p-0"
                               title={
                                 <div className="mb-1">
-                                  <p className="dark:text-[#e5e7eb] block truncate"><strong>{(get(card, "title", ""))}</strong></p>
+                                  <p className="dark:text-[#e5e7eb] block truncate">
+                                    <strong>{get(card, "title", "")}</strong>
+                                  </p>
                                 </div>
                               }
                               description={
                                 <div className="flex justify-between items-center mb-2">
-                                  <p className="dark:text-[#e5e7eb] line-clamp-3">{(get(card, "description", ""))}</p>
+                                  <p className="dark:text-[#e5e7eb] line-clamp-3">
+                                    {get(card, "description", "")}
+                                  </p>
                                 </div>
                               }
                             />

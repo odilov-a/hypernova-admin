@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Spin } from "antd";
 import { Field } from "formik";
 import { Fields, Button } from "components";
@@ -6,29 +7,57 @@ import { useHooks } from "hooks";
 
 const Vacancy = ({ showCreateModal, createModal }: any): JSX.Element => {
   const { t, get } = useHooks();
-  let data = createModal.data && createModal?.data;
+  const [langTab, setLangTab] = useState("Uz");
+  const langs = [
+    { title: t("O'zbekcha"), value: "Uz" },
+    { title: t("Русский"), value: "Ru" },
+    { title: t("English"), value: "En" },
+  ];
+  let data = createModal.data && createModal.data;
+
+  const handleTabClick = (value: string) => {
+    setLangTab(value);
+  };
+
   return (
     <div>
       <Container.Form
         url={data._id ? `vacancies/${get(data, "_id")}` : "vacancies"}
-        method={data._id ? "put" : "post"} name="vacancies"
+        method={data._id ? "put" : "post"}
+        name="vacancies"
         fields={[
           {
-            name: "title",
             required: true,
-            value: get(data, "title"),
+            type: "string",
+            name: "titleUz",
+            value: get(data, "titleUz"),
           },
           {
+            required: true,
+            type: "string",
+            name: "titleRu",
+            value: get(data, "titleRu"),
+          },
+          {
+            type: "string",
+            required: true,
+            name: "titleEn",
+            value: get(data, "titleEn"),
+          },
+          {
+            type: "string",
             required: true,
             name: "descriptionUz",
             value: get(data, "descriptionUz"),
           },
           {
+            type: "string",
             required: true,
             name: "descriptionRu",
             value: get(data, "descriptionRu"),
           },
           {
+            type: "string",
             required: true,
             name: "descriptionEn",
             value: get(data, "descriptionEn"),
@@ -43,50 +72,54 @@ const Vacancy = ({ showCreateModal, createModal }: any): JSX.Element => {
           console.log("Error", error);
         }}
       >
-        {({ isSubmitting }) => {
-          return (
-            <Spin spinning={isSubmitting} tip="Verifying">
-              <div className="mt-3">
-              <Field
-                required
-                name="title"
-                label={t("Sarlavha")}
-                rootClassName="mb-[10px]"
-                component={Fields.Input}
-                placeholder={t("Sarlavha")}
-              />
-              <Field
-                required
-                rows={3}
-                name="descriptionUz"
-                rootClassName="mb-[10px]"
-                component={Fields.Textarea}
-                label={t("Ma'lumot (Uzbekcha)")}
-                placeholder={t("Ma'lumot (Uzbekcha)")}
-              />
-              <Field
-                required
-                rows={3}
-                name="descriptionRu"
-                rootClassName="mb-[10px]"
-                component={Fields.Textarea}
-                label={t("Ma'lumot (Ruscha)")}
-                placeholder={t("Ma'lumot (Ruscha)")}
-              />
-              <Field
-                required
-                rows={3}
-                name="descriptionEn"
-                rootClassName="mb-[10px]"
-                component={Fields.Textarea}
-                label={t("Ma'lumot (Inglizcha)")}
-                placeholder={t("Ma'lumot (Inglizcha)")}
-              />
-              <Button title={t("Saqlash")} className="w-full mt-[15px]" htmlType="submit" size="large"/>
-              </div>
-            </Spin>
-          );
-        }}
+        {({ isSubmitting }) => (
+          <Spin spinning={isSubmitting} tip="Verifying">
+            <div className="lang-tabs">
+              {langs.map((tab) => (
+                <button
+                  key={tab.value}
+                  type="button"
+                  className={
+                    langTab === tab.value ? "selected-tab lang-tab" : "lang-tab"
+                  }
+                  onClick={() => handleTabClick(tab.value)}
+                >
+                  {tab.title}
+                </button>
+              ))}
+            </div>
+            <div className="mt-3">
+              {langTab !== "info" && (
+                <div>
+                  <Field
+                    required
+                    name={`title${langTab}`}
+                    rootClassName="mb-[10px]"
+                    component={Fields.Input}
+                    label={t(`title${langTab}`)}
+                    placeholder={t(`title${langTab}`)}
+                  />
+                  <Field
+                    required
+                    rootClassName="mb-[10px]"
+                    component={Fields.Textarea}
+                    name={`description${langTab}`}
+                    label={t(`description${langTab}`)}
+                    placeholder={t(`description${langTab}`)}
+                  />
+                  {langTab === "En" && (
+                    <Button
+                      title={t("Saqlash")}
+                      className="w-full mt-[15px]"
+                      htmlType="submit"
+                      size="large"
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+          </Spin>
+        )}
       </Container.Form>
     </div>
   );

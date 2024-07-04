@@ -1,0 +1,26 @@
+.lang-tabs {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  
+    .lang-tab {
+      margin-right: 20px;
+      padding: 6px 12px;
+      border: 2px solid #3367f6;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer;
+      transition: all ease 0.3s;
+  
+      &:hover {
+        border: 2px solid #3367f6;
+        background-color: #3367f6;
+        color: #fff;
+      }
+    }
+  
+    .selected-tab {
+      border: 2px solid #3367f6;
+      background-color: #3367f6;
+      color: #fff;
+    }
+  }
