@@ -11,7 +11,8 @@ const Client = ({ showCreateModal, createModal }: any): JSX.Element => {
     <div>
       <Container.Form
         url={data._id ? `clients/${get(data, "_id")}` : "clients"}
-        method={data._id ? "put" : "post"} name="clients"
+        method={data._id ? "put" : "post"}
+        name="clients"
         configs={{
           headers: { "Content-Type": "multipart/form-data" },
         }}
@@ -48,14 +49,21 @@ const Client = ({ showCreateModal, createModal }: any): JSX.Element => {
                   rootClassName="mb-[10px]"
                   placeholder={t("Linkni kiriting")}
                 />
-                <label>{("Rasmni yuklang")}</label>
+                <p className="text-[#9EA3B5] px-[12px] py-[6px] bg-[#E6ECFE] dark:bg-[#454d70] rounded-[6px] inline-block mb-[12px] mr-[10px]">
+                  {t("photo")}
+                </p>
                 <Field
                   name="image"
                   component={Fields.FileUpload}
                   setFieldValue={setFieldValue}
                   accept="image/png, image/jpeg, image/jpg"
                 />
-                <Button title={t("Saqlash")} className="w-full mt-[10px]" htmlType="submit"size="large"/>
+                <Button
+                  title={t("Saqlash")}
+                  className="w-full mt-[10px]"
+                  htmlType="submit"
+                  size="large"
+                />
               </div>
             </Spin>
           );

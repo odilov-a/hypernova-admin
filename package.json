@@ -16,6 +16,7 @@
     "@types/react-i18next": "^8.1.0",
     "antd": "^5.7.0",
     "axios": "^1.4.0",
+    "ckeditor4-react": "^5.1.0",
     "formik": "^2.4.2",
     "i18next": "^23.4.4",
     "i18next-browser-languagedetector": "^7.1.0",
